@@ -1,5 +1,6 @@
 package com.iostate.bms
 
+import com.avaje.ebean.EbeanServer
 import com.avaje.ebean.EbeanServerFactory
 import com.avaje.ebean.config.ServerConfig
 import httl.web.springmvc.HttlViewResolver
@@ -19,13 +20,13 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView
 open class BmsApplication : WebMvcConfigurationSupport() {
   @Bean(autowire = Autowire.BY_TYPE)
   @Scope(SCOPE_SINGLETON)
-  open fun getEbeanServer() = {
+  open fun getEbeanServer(): EbeanServer {
     val config = ServerConfig()
-    config.name = "mysql"
+    config.name = "db"
     config.loadFromProperties()
     config.isDefaultServer = true
 
-    EbeanServerFactory.create(config)
+    return EbeanServerFactory.create(config)
   }
 
   override fun configureViewResolvers(registry: ViewResolverRegistry) {
