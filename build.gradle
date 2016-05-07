@@ -1,0 +1,45 @@
+buildscript {
+  ext {
+    springBootVersion = '1.3.3.RELEASE'
+    kotlinVersion = '1.0.1-2'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+  }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'spring-boot'
+
+jar {
+  baseName = 'bms'
+  version = '0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-aop')
+  compile('org.springframework.boot:spring-boot-starter-mail')
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+
+  compile('com.github.httl:httl:1.0.11')
+  compile('com.github.httl:httl-springmvc:1.0.11')
+  compile('org.avaje.ebeanorm:avaje-ebeanorm:7.9.1')
+  compile 'org.avaje.ebeanorm:avaje-ebeanorm-agent:4.9.2'
+  compile 'org.avaje:avaje-agentloader:2.1.2'
+  runtime('mysql:mysql-connector-java')
+
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+

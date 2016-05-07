@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>后台管理系统</title>
+  $!{css(["basic"])}
+</head>
+<body>
+<div>
+Welcome
+</div>
+$!{js(["vue"])}
+</body>
+</html>
