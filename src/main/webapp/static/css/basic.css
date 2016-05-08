@@ -1,0 +1,9 @@
+body{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑";
+  background: #e5e5e5;
+}
+
+body>.container{
+    margin-top: 50px;
+    min-height: 600px;
+}

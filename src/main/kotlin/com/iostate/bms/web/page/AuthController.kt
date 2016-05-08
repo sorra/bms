@@ -19,7 +19,7 @@ open class AuthController {
   open fun login(request: HttpServletRequest,
                  @RequestParam email: String, @RequestParam password: String): String {
     val user = User.where().eq("email", email).findUnique()
-    if (user != null && Auth.encrypt(password) == user.password) {
+    if (user != null && Auth.checkPassword(password, user.password)) {
       Auth.login(request, user.id)
       return "redirect:/"
     } else {
@@ -33,13 +33,28 @@ open class AuthController {
     if (User.where().eq("email", email).findUnique() != null) {
       throw DomainException("Email %s is already used!", email)
     }
-    val user = User(email = email, password = Auth.encrypt(password), name = name.orEmpty())
+    val user = User(email = email, password = Auth.encryptPassword(password), name = name.orEmpty())
     user.save()
-    log.info("User {} registered.", user.id)
+    log.info("User[{}] registered.", user.id)
     if (name.isNullOrEmpty()) {
       user.name = "用户" + user.id
       user.save()
     }
     return "forward:/auth/login"
+  }
+
+  @RequestMapping("/change-password", method = arrayOf(POST))
+  open fun changePassword(@RequestParam oldPassword: String,
+                          @RequestParam newPassword: String): String {
+    val userId = Auth.checkUserId()
+    val user = User.byId(userId)
+    if (user != null && Auth.checkPassword(oldPassword, user.password)) {
+      user.password = Auth.encryptPassword(newPassword)
+      user.save()
+      log.info("User[{}] changed password.", user.id)
+      return "redirect:/"
+    } else {
+      throw DomainException("Wrong email or password")
+    }
   }
 }

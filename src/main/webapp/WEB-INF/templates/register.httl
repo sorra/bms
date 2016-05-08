@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>注册:后台管理系统</title>
+  $!{css(["basic"])}
+  <style>
+    .heading{
+      text-align: center;
+      padding: 10px;
+      color: lightyellow;
+    }
+    form{
+      width: 400px;
+      margin: 15% auto auto auto;
+      background-color: rgba(51,51,51,0.4);
+    }
+    label, input{
+      display: block;
+    }
+    input{
+      width: 20em;
+    }
+    .input-group{
+      display: block;
+      margin: 0.5em auto 0.5em auto;
+      padding: 0.5em 0 0 0;
+      width: 20em;
+    }
+    #register-action{
+      width: auto;
+      margin: 1em 0 0 0;
+      padding: 2em;
+      background-color: rgba(51,51,51,0.25);
+      text-align: center;
+    }
+    .validation-alert{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <form action="/auth/register" method="post">
+    <h5 class="heading">注册一个账号</h5>
+    <div class="input-group">
+      <label for="email">邮箱</label>
+      <input id="email" name="email" type="text" placeholder="请输入您的邮箱" />
+    </div>
+    <div class="input-group">
+      <label for="password">密码</label>
+      <input id="password" name="password" type="password" placeholder="请输入密码" />
+    </div>
+    <div class="input-group">
+      <label for="repeat-password">再次输入密码</label>
+      <input id="repeat-password" name="repeat-password" type="password" placeholder="请再次输入密码" />
+    </div>
+    <div class="input-group" id="register-action">
+      <button type="submit" class="btn btn-block btn-lg btn-danger">
+        <span class="small-circle"><i class="fa fa-caret-right"></i></span>
+        <small>注册</small>
+      </button>
+      <a class="btn" href="/login">已有账号，我要登录</a>
+    </div>
+  </form>
+</div>
+$!{js(["vue"])}
+</body>
+</html>

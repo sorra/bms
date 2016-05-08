@@ -19,12 +19,16 @@ object Auth {
   fun login(request: HttpServletRequest, userId: Long) {
     logout(request) // Clear old session data
     request.session.setAttribute("userId", userId)
-    log.info("User {} login successfully.", userId)
+    log.info("User[{}] login successfully.", userId)
   }
 
   fun logout(request: HttpServletRequest) {
+    log.info("User[{}] logout.", userId())
     request.getSession(false)?.invalidate()
   }
 
-  fun encrypt(password: String) = StrongPasswordEncryptor().encryptPassword(password)
+  fun encryptPassword(password: String) = StrongPasswordEncryptor().encryptPassword(password)
+
+  fun checkPassword(plainPassword: String, encryptedPassword: String) =
+      StrongPasswordEncryptor().checkPassword(plainPassword, encryptedPassword)
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>登录:后台管理系统</title>
+  $!{css(["basic"])}
+  <style>
+    .heading{
+      text-align: center;
+      padding: 10px;
+    }
+    form{
+      width: 400px;
+      margin: 15% auto auto auto;
+      background-color: rgba(51,51,51,0.4);
+    }
+    label, input{
+      display: block;
+    }
+    input{
+      width: 20em;
+    }
+    .input-group{
+      display: block;
+      margin: 0.5em auto 0.5em auto;
+      padding: 0.5em 0 0 0;
+      width: 20em;
+    }
+    #login-action{
+      width: auto;
+      margin: 1em 0 0 0;
+      padding: 2em;
+      background-color: rgba(51,51,51,0.25);
+      text-align: center;
+    }
+    .validation-alert{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <form action="/auth/login" method="post">
+    <h3 class="heading">登录系统</h3>
+    <div class="input-group">
+      <label for="email">邮箱</label>
+      <input id="email" name="email" type="text" placeholder="请输入您的邮箱" />
+    </div>
+    <div class="input-group">
+      <label for="password">密码</label>
+      <input id="password" name="password" type="password" placeholder="请输入密码" />
+    </div>
+    <div class="input-group" id="login-action">
+      <button type="submit" class="btn btn-block btn-lg btn-danger">
+        <span class="small-circle"><i class="fa fa-caret-right"></i></span>
+        <small>登录</small>
+      </button>
+      <a class="btn" href="/register">没有账号，注册一个</a>
+    </div>
+  </form>
+</div>
+$!{js(["vue"])}
+</body>
+</html>

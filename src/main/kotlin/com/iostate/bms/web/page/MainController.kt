@@ -9,4 +9,13 @@ open class MainController {
 
   @RequestMapping("/", "/index")
   open fun index() = "index"
+
+  @RequestMapping("/login")
+  open fun login() = "login"
+
+  @RequestMapping("/register")
+  open fun register() = "register"
+
+  @RequestMapping("/change-password")
+  open fun changePassword() = "change-password"
 }
