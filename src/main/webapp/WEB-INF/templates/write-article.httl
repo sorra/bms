@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+#set(Article ar)
+<head>
+  <meta charset="UTF-8">
+  <title>写文章</title>
+  $!{css(["basic"])}
+  <style>
+  #article {
+    width: 100%;
+    margin: 20px;
+  }
+  #title, #content {
+    overflow: hidden;
+    resize: none;
+  }
+  #title {
+    width: 67%;
+    height: 2em;
+    margin-left: 120px;
+    padding: 5px;
+  }
+  #content {
+    width: 90%;
+    min-height: 30em;
+  }
+  </style>
+</head>
+<body>
+<div>
+  <form id="article" action="/api/articles/${subTarget}" method="post">
+    <div>
+      <input id="title" name="title" placeholder="标题" type="text" value="${ar.title}"/>
+    </div>
+    <div>
+      <textarea id="content" name="content" placeholder="内容">${ar.content}</textarea>
+    </div>
+    <input type="submit"/>
+  </form>
+</div>
+$!{js(["vue"])}
+</body>
+</html>

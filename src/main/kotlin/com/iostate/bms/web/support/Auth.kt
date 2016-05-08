@@ -5,6 +5,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.context.request.RequestAttributes.SCOPE_SESSION
 import org.springframework.web.context.request.RequestContextHolder
+import org.springframework.web.util.UriUtils
+import java.io.UnsupportedEncodingException
 import javax.servlet.http.HttpServletRequest
 
 
@@ -31,4 +33,12 @@ object Auth {
 
   fun checkPassword(plainPassword: String, encryptedPassword: String) =
       StrongPasswordEncryptor().checkPassword(plainPassword, encryptedPassword)
+
+  fun getRedirectGoto(requestLink: String): String {
+    return "goto=" + encodeLink(requestLink)
+  }
+
+  fun encodeLink(link: String) = UriUtils.encodeQueryParam(link, "ISO-8859-1")
+
+  fun decodeLink(link: String) = UriUtils.decode(link, "ISO-8859-1")
 }

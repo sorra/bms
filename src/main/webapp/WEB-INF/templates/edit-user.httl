@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+#set(User user)
+<head>
+  <meta charset="UTF-8">
+  <title>后台管理系统</title>
+  $!{css(["basic"])}
+</head>
+<body>
+<div>
+  <form action="/api/users/${user.id}/update" method="post">
+    名字: <input name="name" value="${user.name}" type="text"/>
+    简介: <input name="introduction" value="${user.introduction}" type="text"/>
+    <input type="submit"/>
+  </form>
+</div>
+$!{js(["vue"])}
+</body>
+</html>

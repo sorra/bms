@@ -21,10 +21,23 @@ open class AuthController {
     val user = User.where().eq("email", email).findUnique()
     if (user != null && Auth.checkPassword(password, user.password)) {
       Auth.login(request, user.id)
-      return "redirect:/"
+      return "redirect:" + findRefererAsGoto(request.getHeader("referer"))
     } else {
       throw DomainException("Wrong email or password!")
     }
+  }
+
+  private fun findRefererAsGoto(referer: String?): String? {
+    if (referer == null) return "/"
+    val destContext = "?goto="
+    val idx = referer.lastIndexOf(destContext)
+    var dest: String? = if (idx < 0) null else
+      referer.substring(idx + destContext.length, referer.length)
+    if (dest != null && dest.contains(":")) {
+      log.info("XSS URL = " + dest)
+      dest = null // Escape cross-site url
+    }
+    return if(dest == null) "/" else Auth.decodeLink(dest)
   }
 
   @RequestMapping("/register", method = arrayOf(POST))
@@ -50,7 +63,7 @@ open class AuthController {
     val user = User.byId(userId)
     if (user != null && Auth.checkPassword(oldPassword, user.password)) {
       user.password = Auth.encryptPassword(newPassword)
-      user.save()
+      user.update()
       log.info("User[{}] changed password.", user.id)
       return "redirect:/"
     } else {

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>错误 ${errorCode}</title>
+  $!{css(["basic"])}
+</head>
+<body>
+<div>
+  <div>错误码: ${errorCode}</div>
+  <div>原因: ${reason}</div>
+  <a href="/">回到首页</a>
+</div>
+$!{js(["vue"])}
+</body>
+</html>
