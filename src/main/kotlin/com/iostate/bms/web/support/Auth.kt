@@ -1,5 +1,6 @@
 package com.iostate.bms.web.support
 
+import org.jasypt.util.password.StrongPasswordEncryptor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.context.request.RequestAttributes.SCOPE_SESSION
@@ -24,4 +25,6 @@ object Auth {
   fun logout(request: HttpServletRequest) {
     request.getSession(false)?.invalidate()
   }
+
+  fun encrypt(password: String) = StrongPasswordEncryptor().encryptPassword(password)
 }

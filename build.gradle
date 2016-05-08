@@ -30,18 +30,19 @@ repositories {
 }
 
 dependencies {
-  compile('org.springframework.boot:spring-boot-starter-aop')
-  compile('org.springframework.boot:spring-boot-starter-mail')
-  compile('org.springframework.boot:spring-boot-starter-web')
-  compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+  compile 'org.springframework.boot:spring-boot-starter-aop'
+  compile 'org.springframework.boot:spring-boot-starter-mail'
+  compile 'org.springframework.boot:spring-boot-starter-web'
+  compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
 
-  compile('com.github.httl:httl:1.0.11')
-  compile('com.github.httl:httl-springmvc:1.0.11')
-  compile('org.avaje.ebeanorm:avaje-ebeanorm:7.9.1')
+  compile 'com.github.httl:httl:1.0.11'
+  compile 'com.github.httl:httl-springmvc:1.0.11'
+  compile 'org.avaje.ebeanorm:avaje-ebeanorm:7.9.1'
   compile 'org.avaje.ebeanorm:avaje-ebeanorm-agent:4.9.2'
   compile 'org.avaje:avaje-agentloader:2.1.2'
-  runtime('mysql:mysql-connector-java')
+  compile 'org.jasypt:jasypt:1.9.2'
+  runtime 'mysql:mysql-connector-java'
 
-  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 

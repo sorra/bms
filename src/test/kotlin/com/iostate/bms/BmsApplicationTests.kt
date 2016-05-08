@@ -1,4 +1,4 @@
-package com.iostate
+package com.iostate.bms
 
 import com.iostate.bms.BmsApplication
 import org.junit.Test

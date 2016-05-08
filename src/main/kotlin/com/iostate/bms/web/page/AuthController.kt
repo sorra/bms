@@ -19,12 +19,11 @@ open class AuthController {
   open fun login(request: HttpServletRequest,
                  @RequestParam email: String, @RequestParam password: String): String {
     val user = User.where().eq("email", email).findUnique()
-        ?: throw DomainException("User email %s does not exist!", email)
-    if (password == user.password) {
+    if (user != null && Auth.encrypt(password) == user.password) {
       Auth.login(request, user.id)
       return "redirect:/"
     } else {
-      throw DomainException("Wrong password!")
+      throw DomainException("Wrong email or password!")
     }
   }
 
@@ -34,13 +33,13 @@ open class AuthController {
     if (User.where().eq("email", email).findUnique() != null) {
       throw DomainException("Email %s is already used!", email)
     }
-    val user = User(email = email, password = password, name = name.orEmpty())
+    val user = User(email = email, password = Auth.encrypt(password), name = name.orEmpty())
     user.save()
     log.info("User {} registered.", user.id)
     if (name.isNullOrEmpty()) {
       user.name = "用户" + user.id
       user.save()
     }
-    return "forward:/"
+    return "forward:/auth/login"
   }
 }
