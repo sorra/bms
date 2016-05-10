@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<!--
+#set(Collection<User> users)
+-->
+<head>
+  <meta charset="UTF-8">
+  <title>用户列表</title>
+  $!{css(["basic"])}
+</head>
+<body>
+<div>
+#for(User user : users)
+  <div><a href="/users/${user.id}">${user.name}</a></div>
+  <div>简介: ${user.introduction}</div>
+#end
+</div>
+$!{js(["vue"])}
+</body>
+</html>

@@ -6,9 +6,13 @@
   $!{css(["basic"])}
 </head>
 <body>
-<div>
-Welcome
-</div>
+  <h1>欢迎!</h1>
+  <div>
+    <a href="/articles">文章列表</a>
+  </div>
+  <div>
+    <a href="/users">用户列表</a>
+  </div>
 $!{js(["vue"])}
 </body>
 </html>

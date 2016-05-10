@@ -3,7 +3,7 @@
 #set(User user)
 <head>
   <meta charset="UTF-8">
-  <title>后台管理系统</title>
+  <title>修改用户信息</title>
   $!{css(["basic"])}
 </head>
 <body>

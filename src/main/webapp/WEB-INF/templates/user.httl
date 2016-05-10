@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+#set(User user)
+#set(Boolean canEdit)
+<head>
+  <meta charset="UTF-8">
+  <title>用户信息</title>
+  $!{css(["basic"])}
+</head>
+<body>
+<div>
+  <div>${user.name}</div>
+  <div>简介: ${user.introduction}</div>
+  #if(canEdit)
+  <a href="/users/${user.id}/edit">修改信息</a>
+  #end
+</div>
+$!{js(["vue"])}
+</body>
+</html>

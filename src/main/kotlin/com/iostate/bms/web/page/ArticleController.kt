@@ -17,6 +17,19 @@ open class ArticleController {
     return ModelAndView("write-article").addObject("subTarget", "new")
   }
 
+  @RequestMapping
+  open fun all(): ModelAndView {
+    Auth.checkUserId()
+    return ModelAndView("article-list").addObject("ars", Article.all())
+  }
+
+  @RequestMapping("/{id}")
+  open fun byId(@PathVariable id: Long): ModelAndView {
+    val userId = Auth.checkUserId()
+    val article = Article.byId(id)
+    return ModelAndView("article").addObject("ar", article).addObject("canEdit", article?.authorId == userId)
+  }
+
   @RequestMapping("/{id}/edit")
   open fun edit(@PathVariable id: Long): ModelAndView {
     Auth.checkUserId()

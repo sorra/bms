@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<!--
+#set(Collection<Article> ars)
+-->
+<head>
+  <meta charset="UTF-8">
+  <title>文章列表</title>
+  $!{css(["basic"])}
+</head>
+<body>
+<div>
+#for(Article ar : ars)
+  <a href="/articles/${ar.id}"><h5>${ar.title}</h5></a>
+  <div>作者: <a href="/users/{ar.author.id}">${ar.author.name}</a></div>
+  <div>${ar.whenCreated}</div>
+#end
+</div>
+$!{js(["vue"])}
+</body>
+</html>

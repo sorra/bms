@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.web.context.request.RequestAttributes.SCOPE_SESSION
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.util.UriUtils
-import java.io.UnsupportedEncodingException
 import javax.servlet.http.HttpServletRequest
 
 

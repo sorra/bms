@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+#set(Article ar)
+#set(Boolean canEdit)
+<head>
+  <meta charset="UTF-8">
+  <title>文章 - ${ar.title}</title>
+  $!{css(["basic"])}
+</head>
+<body>
+<div>
+  <h3>${ar.title}</h3>
+  <div>
+    作者: <a href="/users/${ar.authorId}">${ar.author.name}</a>
+    发表于 <span>${ar.whenCreated}</span>
+    修改于 <span>${ar.whenModified}</span>
+    #if(canEdit)
+    <a href="/articles/${ar.id}/edit">修改文章</a>
+    #end
+  </div>
+  <div>${ar.content}</div>
+</div>
+$!{js(["vue"])}
+</body>
+</html>
