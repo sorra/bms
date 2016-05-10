@@ -3,6 +3,7 @@ package com.iostate.bms
 import com.avaje.ebean.EbeanServer
 import com.avaje.ebean.EbeanServerFactory
 import com.avaje.ebean.config.ServerConfig
+import com.fasterxml.jackson.databind.ObjectMapper
 import httl.web.springmvc.HttlViewResolver
 import org.avaje.agentloader.AgentLoader
 import org.springframework.beans.factory.annotation.Autowire
@@ -39,7 +40,9 @@ open class BmsApplication : WebMvcConfigurationSupport() {
 
   @Bean
   @Scope(SCOPE_SINGLETON)
-  open fun json() = MappingJackson2JsonView()
+  open fun json(): MappingJackson2JsonView {
+    return MappingJackson2JsonView(ObjectMapper())
+  }
 }
 
 fun main(args: Array<String>) {

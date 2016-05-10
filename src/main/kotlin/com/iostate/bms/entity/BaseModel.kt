@@ -25,3 +25,6 @@ abstract class BaseModel : Model() {
   var whenModified: Timestamp? = null
 
 }
+
+fun <T> load(beanType: Class<T>, id: Long): T? =
+    if (id > 0) Model.db().find(beanType, id) else null

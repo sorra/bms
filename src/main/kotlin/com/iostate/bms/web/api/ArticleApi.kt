@@ -14,7 +14,7 @@ open class ArticleApi {
   @RequestMapping("/new", method = arrayOf(POST))
   open fun create(@RequestParam title: String, @RequestParam content: String): Article {
     val userId = Auth.checkUserId()
-    return Article(title = title, content = content, author = User.ref(userId)).apply{
+    return Article(title = title, content = content, authorId = userId).apply {
       save()
     }
   }
@@ -33,7 +33,7 @@ open class ArticleApi {
                   @RequestParam title: String, @RequestParam content: String): Article {
     val userId = Auth.checkUserId()
     val article = Article.byId(id) ?: throw DomainException("Article[%s] does not exist", id)
-    if (userId == article.author?.id) {
+    if (userId == article.authorId) {
       article.title = title
       article.content = content
       return article
@@ -45,7 +45,7 @@ open class ArticleApi {
   @RequestMapping("/{id}/delete", method = arrayOf(POST))
   open fun delete(@PathVariable id: Long) {
     val userId = Auth.checkUserId()
-    if (userId == Article.byId(id)?.author?.id) Article.deleteById(id)
+    if (userId == Article.byId(id)?.authorId) Article.deleteById(id)
     else throw DomainException("You are not the author of article[%s]", id)
   }
 }
