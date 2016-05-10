@@ -36,6 +36,7 @@ open class ArticleApi {
     if (userId == article.authorId) {
       article.title = title
       article.content = content
+      article.update()
       return article
     } else {
       throw DomainException("You are not the author of article[%s]", id)
