@@ -35,9 +35,15 @@
     <div>
       <textarea id="content" name="content" placeholder="内容">${ar.content}</textarea>
     </div>
-    <input type="submit"/>
+    <button type="submit">发表</button>
+    <button type="button" onclick="redirectTo('/articles/${ar.id}')">取消</button>
   </form>
 </div>
 $!{js(["vue"])}
+<script>
+function redirectTo(dest) {
+  window.location = dest
+}
+</script>
 </body>
 </html>
